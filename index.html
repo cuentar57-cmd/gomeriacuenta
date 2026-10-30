@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132b24">
+  <title>Cuenta Gomería</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><span class="badge">TU CIERRE, CLARO</span><h1>Cuenta Gomería<span>Todo en su lugar.</span></h1><p>Cargá cada trabajo o venta y llevá las cuentas del día.</p></header>
+    <section class="card calculator"><div class="steps"><button id="repairs-step" type="button" aria-pressed="true">1. Arreglos</button><button id="sales-step" type="button" aria-pressed="false">2. Cámaras y cubiertas</button></div><h2 id="step-title">Primero, sumá los arreglos</h2>
+      <form id="entry-form">
+        <label class="amount-label" for="amount">Importe en pesos</label>
+        <div class="amount-display"><span>$</span><input id="amount" type="number" inputmode="decimal" min="0.01" max="1000000000" step="0.01" required placeholder="0" autofocus></div>
+        <label id="type-label" class="type-label" hidden>¿Qué estás cobrando?<select id="type"><option value="repair">Arreglo · 70 / 30</option><option value="tube">Venta de cámara · $3.000 para el del 30%</option><option value="tire">Venta de cubierta · sin comisión</option></select></label>
+        <p class="hint">Tocá cómo pagó para sumar este importe.</p>
+        <div class="payment-buttons"><button class="primary" type="submit" name="payment" value="cash">+ Efectivo</button><button class="transfer-button" type="submit" name="payment" value="transfer">+ Transferencia</button></div>
+        <p id="rule" class="hint">El 30% del arreglo se suma al pago en efectivo.</p><p id="error" role="alert"></p>
+        <p id="added" class="added" role="status" aria-live="polite"></p>
+      </form>
+      <div class="running-total" aria-live="polite"><span id="running-label">Acumulado de arreglos</span><strong id="running-total">$0</strong><small id="running-methods"></small></div><button id="next-step" class="primary" type="button">Seguir con cámaras y cubiertas →</button>
+      <p class="hint calculator-help">Ejemplo: escribí 8000 y tocá Efectivo. Después escribí 10000 y tocá Transferencia. Para ventas, cargá una unidad por vez.</p>
+    </section>
+    <section class="balance" aria-live="polite"><span>Para entregarle al del 30%</span><strong id="payment">$0</strong><p>Se paga todo en efectivo</p><div id="cash-message"></div></section>
+    <section class="card"><h2>1. Cuenta de arreglos</h2><dl><div><dt>Total de arreglos</dt><dd id="repairs-total">$0</dd></div><div><dt>70% de los arreglos</dt><dd id="repairs-owner">$0</dd></div><div><dt>30% de los arreglos</dt><dd id="repairs-worker">$0</dd></div></dl><h2 class="sales-heading">2. Cuenta de cámaras y cubiertas</h2><dl><div><dt>Ventas de cámaras</dt><dd id="tubes-total">$0</dd></div><div><dt>Comisión por cámaras</dt><dd id="tubes-worker">$0</dd></div><div><dt>Ventas de cubiertas · sin comisión</dt><dd id="tires-total">$0</dd></div></dl></section>
+    <section class="card"><h2>Cierre general · todo acumulado</h2><dl><div><dt>Total cobrado</dt><dd id="total">$0</dd></div><div><dt>En efectivo</dt><dd id="cash">$0</dd></div><div><dt>Por transferencia</dt><dd id="transfer">$0</dd></div><div><dt>30% de arreglos</dt><dd id="repair-share">$0</dd></div><div><dt>Comisiones por cámaras</dt><dd id="tube-share">$0</dd></div><div class="sum"><dt>Total para quien recibe el 30%</dt><dd id="share">$0</dd></div><div><dt>Para la otra parte</dt><dd id="owner">$0</dd></div><div><dt>Efectivo restante tras pagar</dt><dd id="remaining">$0</dd></div></dl><p class="hint">Todas las transferencias quedan para la otra parte. Las cubiertas no generan comisión. Las cámaras aportan $3.000 por unidad; el resto queda para la otra parte.</p></section>
+    <section class="card"><div class="section-head"><h2>Movimientos <span id="count">0</span></h2><button id="reset" class="text-button">Borrar todo</button></div><p id="empty" class="hint">Todavía no cargaste movimientos.</p><ul id="entries"></ul></section>
+    <footer>Guardado automáticamente en este navegador.<br>Los datos no se sincronizan entre celulares.</footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
